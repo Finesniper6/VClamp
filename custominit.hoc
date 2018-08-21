@@ -1,0 +1,112 @@
+INITDUR = 5 // # ms to reach steady state
+
+objref vec4
+vec4 = new Vector()
+
+RS = 0.001
+RS2 = 0.001
+CPS = 0.001
+AG = 1
+AG2 = 1
+tau = 50	//in us
+cap = 0.02
+
+RIF1 = 1
+RIF2 = 1
+RIF11 = 1
+RIF21 = 1
+AIF1 = 1
+
+timing = 0.41
+
+CPfast = 1
+CPfast_tau = 1
+CPslow = 1
+CPslow_tau = 100
+
+
+
+ReA1 = 0.001
+ReA2 = 0.001
+ReA3 = 0.001
+ReA4 = 0.001
+ReB1 = 0.001
+ReB2 = 0.001
+ReB3 = 0.001
+ReB4 = 0.001
+CeA1 = 0.93537
+CeA2 = 0.42834
+CeA3 = 0.70113
+CeA4 = 0.21433
+CeB1 = 1.4144
+CeB2 = 1.643
+CeB3 = 0.11932
+CeB4 = 2.1473
+Gain1 =1
+Gain2 =1
+Gain3 =1
+Gain4 =1
+
+
+proc init() { local temp
+
+	LinearCircuit[0].R_slow = 1.32509+0.92853*CPslow_tau
+	LinearCircuit[0].R_fast = 0.19434+0.81191*CPfast_tau
+
+	LinearCircuit[0].R_slow2 = 1e-09
+	LinearCircuit[0].Cp_slow = 0.001
+
+	LinearCircuit[0].A_slow_Gain = (4.84357+(-0.0654*tau))+(-2.86333+(161.735*CPslow))
+	LinearCircuit[0].A_fast_Gain = -2967+503948*CPfast
+	LinearCircuit[0].A_CC_Gain = 1
+
+	LinearCircuit[0].V_comm_dur0 = timing
+	LinearCircuit[0].V_comm_times10_dur0 = timing
+	
+	
+	LinearCircuit[0].RA1 = ReA1
+	LinearCircuit[0].RA2 = ReA2
+	LinearCircuit[0].RA3 = ReA3
+	LinearCircuit[0].RA4 = ReA4
+	LinearCircuit[0].CA1 = CeA1
+	LinearCircuit[0].CA2 = CeA2
+	LinearCircuit[0].CA3 = CeA3
+	LinearCircuit[0].CA4 = CeA4
+	LinearCircuit[0].RB1 = ReB1
+	LinearCircuit[0].RB2 = ReB2
+	LinearCircuit[0].RB3 = ReB3
+	LinearCircuit[0].RB4 = ReB4
+	LinearCircuit[0].CB1 = CeB1
+	LinearCircuit[0].CB2 = CeB2
+	LinearCircuit[0].CB3 = CeB3
+	LinearCircuit[0].CB4 = CeB4
+	LinearCircuit[0].A1_Gain = Gain1
+	LinearCircuit[0].A2_Gain = Gain2
+	LinearCircuit[0].A3_Gain = Gain3
+	LinearCircuit[0].A4_Gain = Gain4
+/*	
+	print "R_slow: ", LinearCircuit[0].R_slow
+	print "Gain: ", LinearCircuit[0].A_slow_Gain
+*/	
+	
+	vec4.record(&LinearCircuit[0].A_feedback_I)
+  
+  finitialize(v_init)
+  t = -2*INITDUR // jump to a time "before" 0
+  temp = cvode.active()
+  if (temp != 0) { // if cvode is on, turn it off
+    cvode.active(0)
+    dt = 0.025
+  }
+  while (t < -INITDUR) {
+    fadvance()
+  }
+  if (temp != 0) { cvode.active(1) } // turn cvode back on if necessary
+  t = 0
+  if (cvode.active()) {
+    cvode.re_init()
+  } else {
+    fcurrent()
+  }
+  frecord_init()
+}

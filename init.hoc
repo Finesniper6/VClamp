@@ -1,0 +1,26 @@
+load_file("nrngui.hoc")
+load_file("final.ses")
+load_file("custominit.hoc")
+
+
+dt = 0.001
+
+objref f, vec1, vecfill, vec11
+vecfill = new Vector()
+vec11 = new Vector()
+
+LinearCircuit[0].C_bath = 0.0000000000000000000000000000000000000001
+LinearCircuit[0].R_bath = 100000000000000000000000000000000000000000
+
+
+
+{
+xpanel("RunControl", 0)
+v_init = -70
+xvalue("Fast capacitance (pF)","CPfast", 1,"init()", 1, 1 )
+xvalue("Fast tau (us)","CPfast_tau", 1,"init()", 1, 1 )
+xvalue("Slow capacitance (pF)","CPslow", 1,"init()", 1, 1 )
+xvalue("Slow tau (us)","CPslow_tau", 1,"init()", 1, 1 )
+xpanel(200,200)
+}
+

@@ -1,0 +1,315 @@
+{load_file("nrngui.hoc")}
+objectvar save_window_, rvp_
+objectvar scene_vector_[4]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+
+//Begin LinearCircuit[0]
+{
+load_file("lincir.hoc", "LinearCircuit")
+}
+{
+ocbox_ = new LinearCircuit(1)
+}
+{object_push(ocbox_)}
+{version(2)}
+{mkelm(0, -80, 5, 4.5, 1.5708)}
+{mkelm(0, -55, 50, 2.5, 0)}
+{mkelm(7, 10, 30, 2, 0)}
+0.2
+0
+{mklabel(0, "A_feedback", 23.1588, -26.2071)}
+{mkelm(0, -30, -15, 2.5, 1.5708)}
+{mkelm(4, -10, -40, 2, 3.14159)}
+{mklabel(0, "V_comm", 49.0339, 5.6049)}
+{sel.extra_info.restore()}
+3
+0.41 0
+10 10
+10 -65
+{mkelm(6, 10, -60, 2, 0)}
+{mkelm(0, 49.9999, 70, 4, 1.5708)}
+{mkelm(1, 10, 110, 2, 0)}
+1
+{mklabel(0, "R_feedback", -0.6653, -12.3071)}
+{mkelm(0, 40, 110, 1, 0)}
+{mkelm(0, -20, 110, 1, 0)}
+{mkelm(0, -30, 80, 3, 1.5708)}
+{mkelm(0, -30, 145, 3.5, -1.5708)}
+{mkelm(2, -10, 180, 2, 0)}
+1e-006
+{mklabel(0, "C1", 2.03331, 30.889)}
+{mkelm(0, 75, 180, 6.5, 0)}
+{mkelm(0, 140, 105, 7.5, -1.5708)}
+{mkelm(7, 180, 30, 2, 3.14159)}
+1
+0
+{mklabel(0, "A_CC", 14.723, 53.1063)}
+{mkelm(6, 220, -10, 2, 0)}
+{mkelm(0, 240, 50, 2, 0)}
+{mkelm(1, 260, 30, 2, -1.5708)}
+1e-009
+{mklabel(0, "R_slow2", 2.287, -35.0198)}
+{mkelm(0, 280, 10, 2, 0)}
+{mkelm(7, 340, 10, 2, 3.14159)}
+163.061
+0
+{mklabel(0, "A_slow", 8.944, -50.2702)}
+{mkelm(6, 380, -30, 2, 0)}
+{mkelm(0, 410, 30, 3, 0)}
+{mkelm(0, 460, 30, 2, 0)}
+{mkelm(2, 480, 5, 2.5, -1.5708)}
+0.001
+{mklabel(0, "Cp_slow", -1.804, -65.833)}
+{mkelm(6, 480, -40, 2, 0)}
+{mkelm(1, 500, 30, 2, 0)}
+94.1781
+{mklabel(0, "R_slow", 3.165, 20.7934)}
+{mkelm(0, 540, 30, 2, 0)}
+{mkelm(4, 585, 110, 2.5, 3.14159)}
+{mklabel(0, "V_comm_times10", 30.206, -32.7212)}
+{sel.extra_info.restore()}
+3
+0.41 0
+10 10
+10 -650
+{mkelm(0, 560, 70, 4, 1.5708)}
+{mkelm(6, 630, 110, 2, 1.5708)}
+{mkelm(1, -100, -40, 2, 0)}
+1e+041
+{mklabel(0, "R_bath", -0.065, 11.7267)}
+{mkelm(2, -80, -60, 2, -1.5708)}
+1e-040
+{mklabel(0, "C_bath", 22.5907, 0.5553)}
+{mkelm(0, -100, -80, 2, 0)}
+{mkelm(0, -120, -60, 2, 1.5708)}
+{mkelm(6, -120, -100, 2, 0)}
+{mkelm(1, 450, -310, 2, 0)}
+0.001
+{mklabel(0, "RA1", -4.34, -16.833)}
+{mklabel(1, "N1", 15, 15)}
+{mklabel(2, "N2", 15, 15)}
+{mkelm(1, 490, -310, 2, 0)}
+0.001
+{mklabel(0, "RB1", 7.981, 23.031)}
+{mkelm(2, 470, -290, 2, 1.5708)}
+1.4144
+{mklabel(0, "CB1", -25.586, 16.734)}
+{mkelm(0, 470, -255, 1.5, 1.5708)}
+{mkelm(2, 510, -330, 2, 1.5708)}
+0.93537
+{mklabel(0, "CA1", 21.617, -1.816)}
+{mkelm(0, 530, -310, 2, 0)}
+{mkelm(7, 590, -290, 2, 0)}
+1
+0
+{mklabel(0, "A1", -6.062, 3.031)}
+{mkelm(0, 550, -320, 5, 1.5708)}
+{mkelm(0, 590, -370, 4, 0)}
+{mkelm(0, 550, -240, 8, 0)}
+{mkelm(0, 630, -265, 2.5, -1.5708)}
+{mkelm(0, 630, -330, 4, -1.5708)}
+{mkelm(0, 670, -225, 1.5, 1.5708)}
+{mkelm(1, 650, -290, 2, 0)}
+0.001
+{mklabel(0, "RA2", -0.037, -18.146)}
+{mkelm(1, 690, -290, 2, 0)}
+0.001
+{mklabel(0, "RB2", 9.793, 19.226)}
+{mkelm(2, 670, -265, 2.5, -1.5708)}
+1.643
+{mklabel(0, "CB2", -22.529, 19.141)}
+{mkelm(2, 710, -315, 2.5, -1.5708)}
+0.42834
+{mklabel(0, "CA2", 30.902, -1.867)}
+{mkelm(6, 510, -370, 2, 0)}
+{mkelm(6, 710, -360, 2, 0)}
+{mkelm(0, 765, -210, 9.5, 0)}
+{mkelm(0, 745, -290, 3.5, 0)}
+{mkelm(7, 820, -270, 2, 0)}
+1
+0
+{mklabel(0, "A2", -1.861, 1.717)}
+{mkelm(0, 780, -305, 5.5, 1.5708)}
+{mkelm(0, 820, -360, 4, 0)}
+{mkelm(0, 860, -240, 3, -1.5708)}
+{mkelm(0, 860, -315, 4.5, -1.5708)}
+{mkelm(1, 880, -270, 2, 0)}
+0.001
+{mklabel(0, "RA3", 1.672, -16.969)}
+{mkelm(1, 920, -270, 2, 0)}
+0.001
+{mklabel(0, "RB3", 15.239, 19.158)}
+{mkelm(2, 900, -245, 2.5, -1.5708)}
+0.11932
+{mklabel(0, "CB3", 25.273, 17.827)}
+{mkelm(2, 940, -300, 3, -1.5708)}
+0.70113
+{mklabel(0, "CA3", 21.4, -18.112)}
+{mkelm(6, 940, -350, 2, 0)}
+{mkelm(0, 900, -205, 1.5, 1.5708)}
+{mkelm(0, 980, -190, 8, 0)}
+{mkelm(0, 960, -270, 2, 0)}
+{mkelm(7, 1020, -250, 2, 0)}
+1
+0
+{mklabel(0, "A3", -5.03, 0.404)}
+{mkelm(0, 980, -285, 5.5, 1.5708)}
+{mkelm(0, 1020, -340, 4, 0)}
+{mkelm(0, 1060, -220, 3, -1.5708)}
+{mkelm(0, 1060, -295, 4.5, -1.5708)}
+{mkelm(1, 1080, -250, 2, 0)}
+0.001
+{mklabel(0, "RA4", 0.99, -14.545)}
+{mkelm(1, 1120, -250, 2, 0)}
+0.001
+{mklabel(0, "RB4", 15.8, 20.336)}
+{mkelm(2, 1100, -225, 2.5, -1.5708)}
+2.1473
+{mklabel(0, "CB4", 25.84, 15.268)}
+{mkelm(0, 1100, -185, 1.5, 1.5708)}
+{mkelm(0, 1180, -170, 8, 0)}
+{mkelm(2, 1140, -280, 3, -1.5708)}
+0.21433
+{mklabel(0, "CA4", 21.97, -14.443)}
+{mkelm(6, 1140, -330, 2, 0)}
+{mkelm(0, 1160, -250, 2, 0)}
+{mkelm(7, 1220, -230, 2, 0)}
+1
+0
+{mklabel(0, "A4", -4.47, 1.581)}
+{mklabel(3, "Rfin", -19.37, 32.745)}
+{mkelm(0, 1180, -265, 5.5, 1.5708)}
+{mkelm(0, 1220, -320, 4, 0)}
+{mkelm(0, 1260, -275, 4.5, 1.5708)}
+{mkelm(0, 1260, -200, 3, -1.5708)}
+{mkelm(1, 1280, -230, 2, 0)}
+1
+{mklabel(0, "Rout", 15.94, 26.6)}
+{mkelm(6, 1300, -250, 2, 0)}
+{mkelm(0, -10, 135, 2.5, -1.5708)}
+{mkelm(0, 30, 125, 1.5, -1.5708)}
+{mkelm(0, 55, 160, 6.5, 0)}
+{mkelm(0, 50, 140, 2, 0)}
+{mkelm(0, 70, -90, 23, -1.5708)}
+{mkelm(0, 120, -60, 22, -1.5708)}
+{mkelm(7, 160, -300, 2, 0)}
+1
+0
+{mklabel(0, "Aconvert", -9.424, 53.353)}
+{mkelm(0, 95, -320, 2.5, 0)}
+{mkelm(0, 315, -300, 11.5, 0)}
+{mkelm(0, 430, -305, 0.5, 1.5708)}
+{mkelm(1, 260, 70, 2, 1.5708)}
+1e-009
+{mklabel(0, "R_fast2", 31.562, 3.7705)}
+{mkelm(0, 260, 110, 2, 1.5708)}
+{mkelm(7, 340, 130, 2, 3.14159)}
+500981
+0
+{mklabel(0, "A_fast", 9.449, 2.535)}
+{mkelm(0, 280, 130, 2, 0)}
+{mkelm(0, 425, 150, 4.5, 0)}
+{mkelm(6, 380, 90, 2, 0)}
+{mkelm(1, 490, 150, 2, 0)}
+1.00625
+{mklabel(0, "R_fast", -0.217, -16.588)}
+{mkelm(2, 470, 175, 2.5, 1.5708)}
+0.001
+{mklabel(0, "Cp_fast", -35.473, 9.283)}
+{mkelm(6, 470, 220, 2, 3.14159)}
+{mkelm(0, 535, 150, 2.5, 0)}
+{mkelm(0, 560, 130, 2, -1.5708)}
+{parasitic_ = 0  noconsist_ = 1}
+{graphlist.append(new LincirGraph(this, 1))}
+1
+Rfin (mV)
+1 1 0.8 0.9 2
+0 1 -370 0 // graph size
+80 133 322.2 287.1 // box size
+// end info
+{g.exec_menu("Simulate")  tool(2)}
+{sel = nil}
+{object_pop()}
+{
+{
+save_window_=ocbox_.g
+save_window_.size(0,300,0,200)
+scene_vector_[2] = save_window_
+ocbox_.g = save_window_
+save_window_.save_name("ocbox_.g")
+save_window_.label(33.1588, 3.7929, "A_feedback", 1, 1, 0.5, 0.5, 1)
+save_window_.label(39.0339, -34.3951, "V_comm", 1, 1, 0.5, 0.5, 1)
+save_window_.label(9.3347, 97.6929, "R_feedback", 1, 1, 0.5, 0.5, 1)
+save_window_.label(-7.96669, 210.889, "C1", 1, 1, 0.5, 0.5, 1)
+save_window_.label(194.723, 83.1063, "A_CC", 1, 1, 0.5, 0.5, 1)
+save_window_.label(262.287, -5.0198, "R_slow2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(348.944, -40.2702, "A_slow", 1, 1, 0.5, 0.5, 1)
+save_window_.label(478.196, -60.833, "Cp_slow", 1, 1, 0.5, 0.5, 1)
+save_window_.label(503.165, 50.7934, "R_slow", 1, 1, 0.5, 0.5, 1)
+save_window_.label(615.206, 77.2788, "V_comm_times10", 1, 1, 0.5, 0.5, 1)
+save_window_.label(-100.065, -28.2733, "R_bath", 1, 1, 0.5, 0.5, 1)
+save_window_.label(-57.4093, -59.4447, "C_bath", 1, 1, 0.5, 0.5, 1)
+save_window_.label(445.66, -326.833, "RA1", 1, 1, 0.5, 0.5, 1)
+save_window_.label(445, -295, "N1", 1, 1, 0.5, 0.5, 1)
+save_window_.label(485, -295, "N2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(497.981, -286.969, "RB1", 1, 1, 0.5, 0.5, 1)
+save_window_.label(444.414, -273.266, "CB1", 1, 1, 0.5, 0.5, 1)
+save_window_.label(531.617, -331.816, "CA1", 1, 1, 0.5, 0.5, 1)
+save_window_.label(583.938, -286.969, "A1", 1, 1, 0.5, 0.5, 1)
+save_window_.label(649.963, -308.146, "RA2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(699.793, -270.774, "RB2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(647.471, -245.859, "CB2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(740.902, -316.867, "CA2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(818.139, -268.283, "A2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(881.672, -286.969, "RA3", 1, 1, 0.5, 0.5, 1)
+save_window_.label(935.239, -250.842, "RB3", 1, 1, 0.5, 0.5, 1)
+save_window_.label(925.273, -227.173, "CB3", 1, 1, 0.5, 0.5, 1)
+save_window_.label(961.4, -318.112, "CA3", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1014.97, -249.596, "A3", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1080.99, -264.545, "RA4", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1135.8, -229.664, "RB4", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1125.84, -209.732, "CB4", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1161.97, -294.443, "CA4", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1215.53, -228.419, "A4", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1240.63, -197.255, "Rfin", 1, 1, 0.5, 0.5, 1)
+save_window_.label(1295.94, -203.4, "Rout", 1, 1, 0.5, 0.5, 1)
+save_window_.label(150.576, -246.647, "Aconvert", 1, 1, 0.5, 0.5, 1)
+save_window_.label(291.562, 73.7705, "R_fast2", 1, 1, 0.5, 0.5, 1)
+save_window_.label(349.449, 132.535, "A_fast", 1, 1, 0.5, 0.5, 1)
+save_window_.label(489.783, 133.412, "R_fast", 1, 1, 0.5, 0.5, 1)
+save_window_.label(434.527, 184.283, "Cp_fast", 1, 1, 0.5, 0.5, 1)
+}
+ocbox_.map("LinearCircuit[0]", 114, 661, 1615.5, 990)
+}
+objref ocbox_
+//End LinearCircuit[0]
+
+{
+xpanel("RunControl", 0)
+v_init = -70
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 1
+xvalue("t","t", 2 )
+tstop = 1
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.001
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 250
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+screen_update_invl = 0.05
+xvalue("Scrn update invl","screen_update_invl", 1,"", 0, 1 )
+realtime = 0
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(1566,180)
+}
+objectvar scene_vector_[1]
+{doNotify()}
